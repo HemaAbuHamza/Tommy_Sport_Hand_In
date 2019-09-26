@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tommy_Sport_Hand_In.Model;
 
 namespace Tommy_Sport_Hand_In
 {
@@ -23,6 +25,14 @@ namespace Tommy_Sport_Hand_In
         public MainWindow()
         {
             InitializeComponent();
+            
+            
+            // Just checking where to place the XML document!!
+            string path = Directory.GetCurrentDirectory();
+            System.Console.WriteLine("path=" + path);
+            Validator.Validators();
+            Validator.Parser();
+            Console.ReadLine();
         }
     }
 }
