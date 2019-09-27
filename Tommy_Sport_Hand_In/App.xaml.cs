@@ -13,5 +13,14 @@ namespace Tommy_Sport_Hand_In
     /// </summary>
     public partial class App : Application
     {
+    // protected override void OnStartup(StartupEventArgs e)
+    // {
+    //     base.OnStartup(e);
+    //     Tommy_Sport_Hand_In.MainWindow window = new MainWindow();
+    //     ViewModel.CyclistViewModel VM = new ViewModel.CyclistViewModel();
+    //     window.DataContext = VM;
+    //     window.Show();
+    // }
     }
+
 }
