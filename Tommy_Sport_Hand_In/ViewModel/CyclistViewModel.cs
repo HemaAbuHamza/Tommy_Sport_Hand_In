@@ -13,6 +13,7 @@ namespace Tommy_Sport_Hand_In.ViewModel
     {
 
         private IList<Model.Cyclist> CyclistList;
+
         public CyclistViewModel()
         {
             string fileName = "Cycling-Tour-De-France.xml";
@@ -20,7 +21,7 @@ namespace Tommy_Sport_Hand_In.ViewModel
             System.Console.WriteLine("root=" + root.Name);
 
 
-            List<Cyclist> cyclistList = new List<Cyclist>();
+            List<Cyclist> ListOfCyclists = new List<Cyclist>();
 
             XDocument xDoc = XDocument.Load("Cycling-Tour-De-France.xml");
 
@@ -34,7 +35,6 @@ namespace Tommy_Sport_Hand_In.ViewModel
                             
                         };
 
-
             var ResultTimeFeeds = from feed in xDoc.Descendants("result")
                                   where (string)feed.Attribute("result_typeFK") == "101"
                                   select new{
@@ -45,14 +45,45 @@ namespace Tommy_Sport_Hand_In.ViewModel
                                    select new{
                                    EndPosition = feed.Attribute("value").Value};
 
-            //Create the Cyclist list 
-            CyclistList = new List<Model.Cyclist>();
+
 
             foreach (var item in CyclistObjects)
             {
-                CyclistList.Add(new Model.Cyclist { Name = item.CyclistName, Gender = item.CyclistGender, Country = item.CyclistCountryFK });  
+                ListOfCyclists.Add(new Cyclist()
+                {
+                    Name = item.CyclistName,
+                    Gender = item.CyclistGender,
+                    Country = item.CyclistCountryFK,
+
+                });
             }
 
+            foreach (var item in ResultTimeFeeds)
+            {
+                ListOfCyclists.Add(new Cyclist()
+                {
+                    ResultTime = item.ResultTime
+                });
+            }
+
+            foreach (var item in EndPositionFeeds)
+            {
+                ListOfCyclists.Add(new Cyclist()
+                {
+                    EndPosition = Int32.Parse(item.EndPosition)
+                }) ;
+                
+            }
+
+ 
+
+
+            //Create the Cyclist list 
+            foreach (var item in ListOfCyclists)
+            {
+                CyclistList.Add(new Model.Cyclist { Name = item.Name, Gender = item.Gender, Country = item.Country , ResultTime = item.ResultTime , EndPosition = item.EndPosition });  
+            }
+            
 
 
         }
