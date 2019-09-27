@@ -7,15 +7,15 @@ using System.ComponentModel;
 
 namespace Tommy_Sport_Hand_In.Model
 {
-    
+
     public class Cyclist : INotifyPropertyChanged
     {
         private string name;
         private string gender;
-        private string country;
-        private string resultTime;
+        private String country;
+        private double resultTime;
         private int endPosition;
-        
+
         public string Name
         {
             get
@@ -56,7 +56,7 @@ namespace Tommy_Sport_Hand_In.Model
             }
         }
 
-        public string ResultTime
+        public double ResultTime
         {
             get
             {
