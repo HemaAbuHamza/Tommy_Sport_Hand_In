@@ -12,7 +12,7 @@ namespace Tommy_Sport_Hand_In.Model
     {
         private string name;
         private string gender;
-        private String country;
+        private string country;
         private string resultTime;
         private int endPosition;
 
