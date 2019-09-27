@@ -11,12 +11,11 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System.Collections.ObjectModel;
 
+
 namespace Tommy_Sport_Hand_In.ViewModel
 {
-    class CyclistViewModel
+    public class CyclistViewModel : MainWindow
     {
-
-        private IList<Cyclist> CyclistList { get; set; }
 
         public CyclistViewModel()
         {
@@ -50,53 +49,10 @@ namespace Tommy_Sport_Hand_In.ViewModel
                                        EndPosition = feed.Attribute("value").Value
                                    };
 
-            List<Cyclist> ListOfCyclists = new List<Cyclist>();
-            List<Cyclist> CyclistList = new List<Cyclist>();
-
-            foreach (var item in CyclistObjects)
-            {
-                ListOfCyclists.Add(new Cyclist()
-                {
-                    Name = item.CyclistName,
-                    Gender = item.CyclistGender,
-                    Country = item.CyclistCountryFK,
-
-                });
-            }
-
-            List<string> ResultList = new List<string>();
-            foreach (var item in ResultTimeFeeds)
-            {
-                ResultList.Add(item.ResultTime);
-            }
-
-            List<int> EndPosList = new List<int>();
-            foreach (var item in EndPositionFeeds)
-            {
-                EndPosList.Add(Int32.Parse(item.EndPosition));
-            }
-
-
-
-            for (int i = 0; i < ListOfCyclists.Count; i++)
-            {
-                Model.Cyclist NewCyclist = (new Model.Cyclist { Name = ListOfCyclists[i].Name, Gender = ListOfCyclists[i].Gender, Country = ListOfCyclists[i].Country, ResultTime = ResultList[i], EndPosition = EndPosList[i] });
-                CyclistList.Add(new Cyclist() { Name = ListOfCyclists[i].Name, Gender = ListOfCyclists[i].Gender, Country = ListOfCyclists[i].Country, ResultTime = ResultList[i], EndPosition = EndPosList[i] });
-            }
-
-            //Create the Cyclist list 
-            //foreach (var item in ListOfCyclists)
-            //{
-            //    CyclistList.Add(new Model.Cyclist { Name = item.Name, Gender = item.Gender, Country = item.Country , ResultTime = item.ResultTime , EndPosition = item.EndPosition });  
-            //}
-
-
-
+            List<Cyclist> items = new List<Cyclist>();
+            //items.Add(new Cyclist() { name ="ayham", gender = "male",country = "syria" , resultTime = "100", endPosition=2 });
+            //lvDataBinding.ItemsSource = items;
         }
-        public IList<Cyclist> Cyclists
-        {
-            get { return CyclistList; }
-            set { CyclistList = value; }
-        }
+        
     }
 }

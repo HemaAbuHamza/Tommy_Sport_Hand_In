@@ -10,14 +10,13 @@ using System.Windows.Data;
 using System.Xml;
 using System.Xml.Linq;
 using System.Windows;
+using Tommy_Sport_Hand_In.ViewModel;
 
 
 namespace Tommy_Sport_Hand_In.Model
 {
     public class Validator : MainWindow
     {
-        public BindingBase DisplayMemberBinding { get; set; }
-
 
         public static void Validators()
         {
@@ -53,7 +52,6 @@ namespace Tommy_Sport_Hand_In.Model
             string fileName = "Cycling-Tour-De-France.xml";
             XElement root = XElement.Load(fileName);
             System.Console.WriteLine("root=" + root.Name);
-         
         }
 
     }

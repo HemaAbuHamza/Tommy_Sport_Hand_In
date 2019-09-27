@@ -7,17 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox Margin="318,33,324,347" Text="{Binding Path=ListFilter, UpdateSourceTrigger=PropertyChanged}" Width="150"></TextBox>
-        <ListView Name="CyclistListView" Grid.Row="1" Margin="4,178,12,13"  ItemsSource="{Binding Cyclists}"  >
-            <ListView.View>
-                <GridView x:Name="grdTest">
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"  Width="150"/>
-                    <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding Gender}"  Width="70"/>
-                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}"  Width="100"/>
-                    <GridViewColumn Header="Result Time" DisplayMemberBinding="{Binding ResultTime}"  Width="100"/>
-                    <GridViewColumn Header="EndPosition" DisplayMemberBinding="{Binding EndPosition}"  Width="50"/>
-                </GridView>
-            </ListView.View>
+        <ListView Margin="0,10,477,10" Name="lvDataBinding">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Name: " FontWeight="Bold"/>
+                        <TextBlock Text="{Binding name}"  />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Gender: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding gender}"  />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Country: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding country}"  />
+                        <TextBlock Text=", " />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
+
+        <ListView Margin="320,10,309,10" Name="lvDataBinding2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="ResultTime: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding resultTime}" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Margin="488,10,10,10" Name="lvDataBinding3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="EndPosition: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding endPosition}"  />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Window>

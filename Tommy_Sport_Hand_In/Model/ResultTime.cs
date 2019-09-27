@@ -7,13 +7,9 @@ using System.ComponentModel;
 
 namespace Tommy_Sport_Hand_In.Model
 {
-
-    public class Cyclist
+    class ResultTime
     {
-
-        public string name { get; set; }
-        public string gender { get; set; }
-        public string country { get; set; }
+        public string resultTime { get; set; }
 
     }
 }
