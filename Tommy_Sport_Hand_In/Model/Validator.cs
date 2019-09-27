@@ -5,14 +5,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Xml;
 using System.Xml.Linq;
+using System.Windows;
+
 
 namespace Tommy_Sport_Hand_In.Model
 {
-    public class Validator
+    public class Validator : MainWindow
     {
-        public List<Cyclist> cyclistList = new List<Cyclist>();
+        public BindingBase DisplayMemberBinding { get; set; }
+
+
         public static void Validators()
         {
             string fileName = "Cycling-Tour-De-France.xml";
@@ -42,13 +48,14 @@ namespace Tommy_Sport_Hand_In.Model
                 Console.WriteLine("Validation error: " + e.Message);
         }
 
-
         public static void Parser()
         {
-            List<Cyclist> cyclistList = new List<Cyclist>();
             string fileName = "Cycling-Tour-De-France.xml";
             XElement root = XElement.Load(fileName);
             System.Console.WriteLine("root=" + root.Name);
+
+
+            List<Cyclist> cyclistList = new List<Cyclist>();
 
             XDocument xDoc = XDocument.Load("Cycling-Tour-De-France.xml");
             var feeds = from feed in xDoc.Descendants("participant")
@@ -74,20 +81,22 @@ namespace Tommy_Sport_Hand_In.Model
                     Name = item.CyclistName,
                     Gender = item.CyclistGender,
                     Country = item.CyclistCountryFK,
+                    
+                    
                 });
+                
 
                 //Console.WriteLine(item);
             }
 
+           
+
             foreach (var item in cyclistList)
             {
-                Console.WriteLine(item.Name);
+                //Console.WriteLine(item.Name , item.Gender , item.Country);
+
             }
         }
-        public List<Cyclist> CyclistList
-        {
-            get { return cyclistList; }
-            set { cyclistList = value; }
-        }
+
     }
 }

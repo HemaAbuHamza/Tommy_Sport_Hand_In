@@ -13,7 +13,7 @@ namespace Tommy_Sport_Hand_In.Model
         private string name;
         private string gender;
         private String country;
-        private double resultTime;
+        private string resultTime;
         private int endPosition;
 
         public string Name
@@ -56,7 +56,7 @@ namespace Tommy_Sport_Hand_In.Model
             }
         }
 
-        public double ResultTime
+        public string ResultTime
         {
             get
             {
