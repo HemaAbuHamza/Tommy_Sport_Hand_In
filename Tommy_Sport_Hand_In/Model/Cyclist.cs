@@ -14,6 +14,8 @@ namespace Tommy_Sport_Hand_In.Model
         public string name { get; set; }
         public string gender { get; set; }
         public string country { get; set; }
+        public string resultTime { get; set; }
+        public string endPosition { get; set; }
 
     }
 }

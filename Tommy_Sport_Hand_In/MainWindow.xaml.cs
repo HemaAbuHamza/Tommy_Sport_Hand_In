@@ -36,8 +36,8 @@ namespace Tommy_Sport_Hand_In
             Console.ReadLine();
 
 
-
-
+            // The code should be moved later to ViewModel folder
+            List<Cyclist> cyclisTitems = new List<Cyclist>();
 
             string fileName = "Cycling-Tour-De-France.xml";
             XElement root = XElement.Load(fileName);
@@ -46,13 +46,11 @@ namespace Tommy_Sport_Hand_In
             XDocument xDoc = XDocument.Load("Cycling-Tour-De-France.xml");
 
             var CyclistObjects = from feed in xDoc.Descendants("participant")
-                                     //where (string)feed.Attribute("gender") == "male"
                                  select new
                                  {
                                      CyclistName = feed.Attribute("name").Value,
                                      CyclistGender = feed.Attribute("gender").Value,
-                                     CyclistCountryFK = feed.Attribute("countryFK").Value,
-
+                                     CyclistCountryFK = feed.Attribute("countryFK").Value
                                  };
 
             var ResultTimeFeeds = from feed in xDoc.Descendants("result")
@@ -69,35 +67,34 @@ namespace Tommy_Sport_Hand_In
                                        EndPosition = feed.Attribute("value").Value
                                    };
 
-
-
-            List<Cyclist> cyclisTitems = new List<Cyclist>();
-            List<ResultTime> resItems = new List<ResultTime>();
-            List<EndPosition> endItems = new List<EndPosition>();
+            string CyclistNamestr = string.Empty;
+            string CyclistGenderstr = string.Empty;
+            string CyclistCountryFKstr = string.Empty;
+            string ResultTimestr = string.Empty;
+            string EndPositionInt = string.Empty;
 
 
 
             foreach (var item in CyclistObjects)
             {
-                cyclisTitems.Add(new Cyclist() { name = item.CyclistName, gender = item.CyclistGender, country = item.CyclistCountryFK });
+                CyclistNamestr += "\n" + item.CyclistName + "\n";
+                CyclistGenderstr += "\n" + item.CyclistGender + "\n";
+                CyclistCountryFKstr += "\n" + item.CyclistCountryFK + "\n";
             }
 
-            
             foreach (var item in ResultTimeFeeds)
             {
-                resItems.Add(new ResultTime() {resultTime = item.ResultTime }) ;
+                ResultTimestr += "\n"+item.ResultTime + "\n";
             }
 
             foreach (var item in EndPositionFeeds)
             {
-                endItems.Add(new EndPosition() {endPosition = Int32.Parse(item.EndPosition)  });
+                EndPositionInt += "\n" + item.EndPosition + "\n";
             }
+     
+            cyclisTitems.Add(new Cyclist() { name = CyclistNamestr , gender = CyclistGenderstr , country = CyclistCountryFKstr  , resultTime = ResultTimestr , endPosition = EndPositionInt });
 
             lvDataBinding.ItemsSource = cyclisTitems;
-            lvDataBinding2.ItemsSource = resItems;
-            lvDataBinding3.ItemsSource = endItems;
-
-
 
         }
     }
